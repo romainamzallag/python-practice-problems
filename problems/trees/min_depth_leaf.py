@@ -1,5 +1,15 @@
 from tree import Tree
 
+def _helper(tree, acc):
+    if tree.num_children() == 0:
+        return acc
+
+    depths = []
+    for c in tree.children:
+        depths.append(_helper(c, acc + 1))
+
+    return min(depths)
+
 def min_depth_leaf(tree):
     """
     Computes the minimum depth of a leaf in the tree (length of shortest
@@ -9,8 +19,8 @@ def min_depth_leaf(tree):
     
     Returns: (integer) the minimum depth of of a leaf in the tree.
     """
-
-    pass
+    return _helper(tree, 0)
+    
 
 
 #############################################################
