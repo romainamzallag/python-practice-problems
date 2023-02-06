@@ -14,7 +14,17 @@ def clip_values(x, min_val=None, max_val=None):
 
     # YOUR CODE HERE
     # Replace None with an appropriate return value
-    return None
+    if min_val is None:
+        if max_val is None:
+            return x
+        else:
+            return np.insert(x[x <= max_val], len(x[x <= max_val]), max_val)
+    else:
+        if max_val is None:
+            return np.insert(x[x >= min_val], 0, min_val, 0)
+        else:
+            clip_arr = x[(x >= min_val) & (x <= max_val)]
+            return np.insert(clip_arr, [0,len(clip_arr)], [min_val, max_val])
 
 
 #############################################################
